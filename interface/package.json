@@ -20,6 +20,7 @@
   "homepage": "https://github.com/evertonrobertoauler/plataforma-robotica#readme",
   "private": true,
   "dependencies": {
+    "@angular/router": "^0.2.0",
     "angular": "^1.5.6",
     "angular-animate": "^1.5.6",
     "angular-aria": "^1.5.6",
