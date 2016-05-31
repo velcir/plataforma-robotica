@@ -1,0 +1,46 @@
+{
+  "name": "plataforma-robotica/interface",
+  "version": "0.0.1",
+  "description": "Plataforma Robótica Virtual",
+  "license": "Apache-2.0",
+  "angular-cli": {},
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evertonrobertoauler/plataforma-robotica.git"
+  },
+  "keywords": [
+    "Robótica",
+    "Educação",
+    "Arduino"
+  ],
+  "bugs": {
+    "url": "https://github.com/evertonrobertoauler/plataforma-robotica/issues"
+  },
+  "homepage": "https://github.com/evertonrobertoauler/plataforma-robotica#readme",
+  "private": true,
+  "dependencies": {
+    "angular": "^1.5.6",
+    "angular-animate": "^1.5.6",
+    "angular-aria": "^1.5.6",
+    "angular-material": "^1.1.0-rc4-master-06e7e99",
+    "angularfire": "^1.2.0",
+    "blockly": "https://github.com/google/blockly/archive/master.tar.gz"
+  },
+  "devDependencies": {
+    "codelyzer": "0.0.12",
+    "css-loader": "^0.23.1",
+    "file-loader": "^0.8.5",
+    "html-loader": "^0.4.3",
+    "ng-annotate-loader": "^0.1.0",
+    "node-sass": "^3.7.0",
+    "sass-loader": "^3.2.0",
+    "style-loader": "^0.13.1",
+    "ts-loader": "^0.8.2",
+    "tslint": "^3.10.2",
+    "tslint-loader": "^2.1.4",
+    "typescript": "^1.8.10",
+    "typings": "^0.6.6",
+    "webpack": "^1.13.1"
+  }
+}
