@@ -2,7 +2,6 @@ var webpack = require('webpack');
 var exclude = /node_modules/;
 
 var defineObj = {
-  ON_TEST: process.env.NODE_ENV === 'test',
   ON_DEVELOPMENT: process.env.NODE_ENV === 'development',
   ON_PRODUCTION: process.env.NODE_ENV === 'production'
 };
@@ -27,13 +26,15 @@ module.exports = {
     extensions: ['', '.ts', '.js']
   },
   output: {
-    path: __dirname + (defineObj.ON_TEST ? '/test' : '/www'),
-    filename: 'bundle.js'
+    path: __dirname + '/dist',
+    filename: 'bundle.js',
+    publicPath: '/dist/'
   },
   module: {
     loaders: [
       {test: /\.ts$/, loader: 'ng-annotate!ts!tslint', exclude: exclude},
       {test: /\.css/, loader: defineObj.ON_PRODUCTION ? 'style!css?minimize' : 'style!css'},
+      {test: /\.scss/, loader: defineObj.ON_PRODUCTION ? 'style!css?minimize!sass' : 'style!css!sass'},
       {test: /\.html/, loader: 'html'},
       {test: /\.png/, loader: 'file?name=img/[name].[ext]'},
       {test: /\.(ttf|eot|svg|woff)/, loader: 'file?name=fonts/[name].[ext]'}

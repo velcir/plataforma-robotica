@@ -1,10 +1,13 @@
 {
-  "name": "plataforma-robotica/interface",
+  "name": "plataforma-robotica_interface",
   "version": "0.0.1",
   "description": "Plataforma Robótica Virtual",
   "license": "Apache-2.0",
   "angular-cli": {},
-  "scripts": {},
+  "scripts": {
+    "postinstall": "typings install",
+    "start": "webpack --colors --watch & live-server --watch=www"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/evertonrobertoauler/plataforma-robotica.git"
@@ -25,6 +28,7 @@
     "angular-animate": "^1.5.6",
     "angular-aria": "^1.5.6",
     "angular-material": "^1.1.0-rc4-master-06e7e99",
+    "angular-ui-router": "^0.3.0",
     "angularfire": "^1.2.0",
     "blockly": "https://github.com/google/blockly/archive/master.tar.gz"
   },
@@ -33,6 +37,7 @@
     "css-loader": "^0.23.1",
     "file-loader": "^0.8.5",
     "html-loader": "^0.4.3",
+    "live-server": "^1.0.0",
     "ng-annotate-loader": "^0.1.0",
     "node-sass": "^3.7.0",
     "sass-loader": "^3.2.0",
