@@ -25,7 +25,7 @@ import {login} from './components/login/login.component';
 import {editor} from './components/editor/editor.component';
 
 ngModule
-  .value('FIREBASE_URL', 'https://plataforma-robotica.firebaseio.com/')
+  .value('FIREBASE_URL', 'https://plataformarobotica.firebaseio.com/')
   .service('Firebase', Firebase)
   .service('Usuario', Usuario)
   .config(routesConfig)
