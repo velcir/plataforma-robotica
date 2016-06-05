@@ -1,0 +1,21 @@
+.main-content {
+  md-toolbar {
+    .md-icon-button.md-button {
+      padding: 0;
+    }
+
+    .md-font {
+      font-size: 30px;
+      line-height: 40px;
+    }
+
+    .md-button {
+      min-width: 0;
+    }
+
+    img {
+      width: $toolbar-height-mobile-landscape - 8px;
+      height: $toolbar-height-mobile-landscape - 8px;
+    }
+  }
+}

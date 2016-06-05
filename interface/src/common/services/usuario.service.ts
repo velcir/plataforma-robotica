@@ -61,7 +61,7 @@ export class Usuario {
   login(provider) {
     return this.firebase.auth
       .$authWithOAuthPopup(provider)
-      .then(() => this.$state.go('professor'));
+      .then(() => this.$state.go('editor'));
   }
 
   logout() {
@@ -85,3 +85,11 @@ export function loginRequired(firebase: Firebase, usuario: Usuario) {
   });
 }
 
+runOnRouteError.$inject = ['$rootScope', '$state'];
+
+export function runOnRouteError($rootScope, $state) {
+  $rootScope.$on('$stateChangeError', (e) => {
+    e.preventDefault();
+    $state.go('login');
+  });
+}

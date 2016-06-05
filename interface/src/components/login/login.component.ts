@@ -1,5 +1,4 @@
 import {Usuario} from '../../common/services/usuario.service';
-import './login.component.scss';
 
 export const login: angular.IComponentOptions = {
   template: require('./login.componet.html'),

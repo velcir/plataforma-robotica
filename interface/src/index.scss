@@ -1,0 +1,18 @@
+$fa-font-path: '../node_modules/font-awesome/fonts' !default;
+
+@import '../node_modules/angular-material/modules/scss/angular-material';
+@import '../node_modules/font-awesome/scss/font-awesome';
+@import 'components/app/app.component';
+@import 'components/login/login.component';
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+.left {
+  text-align: left;
+}

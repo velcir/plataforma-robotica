@@ -1,0 +1,18 @@
+<md-content layout="column" class="main-content">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <a flex ui-sref="editor">Plataforma Robótica</a>
+      <span ng-show="$ctrl.usuario.perfil" layout="row">
+        <md-button ui-sref="editor" class="md-icon-button">
+          <md-tooltip>{{ $ctrl.usuario.perfil.nome }}</md-tooltip>
+          <img ng-src="{{ $ctrl.usuario.perfil.foto }}">
+        </md-button>
+        <md-button class="md-icon-button" ui-sref="login" aria-label="Sair">
+          <md-tooltip>Sair</md-tooltip>
+          <md-icon md-font-icon="fa-sign-out" class="fa"></md-icon>
+        </md-button>
+      </span>
+    </div>
+  </md-toolbar>
+  <md-content ui-view></md-content>
+</md-content>
