@@ -1,12 +1,11 @@
 {
-  "firebase": "plataforma-robotica",
+  "firebase": "plataformarobotica",
+  "public": ".",
   "ignore": [
     "firebase.json",
-    "node_modules/**",
-    "scr/**",
-    ".git/**",
-    "*.json",
-    ".*",
-    "*.js"
+    "**/.*",
+    "**/node_modules/**",
+    "**/scr/**",
+    "**/typings/**"
   ]
 }
