@@ -1,3 +1,4 @@
 /// <reference path="../typings/main.d.ts" />
 
-declare function require(path: string): any;
+declare const require: any;
+declare const Blockly: any;

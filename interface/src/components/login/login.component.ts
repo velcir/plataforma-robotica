@@ -1,7 +1,7 @@
 import {Usuario} from '../../common/services/usuario.service';
 
 export const login: angular.IComponentOptions = {
-  template: require('./login.componet.html'),
+  template: require('./login.component.html'),
   controller: LoginController
 };
 

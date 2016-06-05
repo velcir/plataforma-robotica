@@ -22,6 +22,7 @@ import {Usuario, runOnRouteError} from './common/services/usuario.service';
 
 import {app} from './components/app/app.component';
 import {login} from './components/login/login.component';
+import {editor} from './components/editor/editor.component';
 
 ngModule
   .value('FIREBASE_URL', 'https://plataforma-robotica.firebaseio.com/')
@@ -31,7 +32,8 @@ ngModule
   .config(themingConfig)
   .run(runOnRouteError)
   .component('app', app)
-  .component('login', login);
+  .component('login', login)
+  .component('editor', editor);
 
 angular.element(document).ready(() => {
   angular.bootstrap(document, [ngModule.name]);

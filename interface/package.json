@@ -6,7 +6,8 @@
   "angular-cli": {},
   "scripts": {
     "postinstall": "typings install",
-    "start": "webpack --colors --watch & live-server --watch=www --port=3000"
+    "start": "gulp blockly && webpack --colors --watch & live-server --watch=www --port=3000",
+    "build": "gulp blockly && NODE_ENV=production webpack --colors"
   },
   "repository": {
     "type": "git",
@@ -30,7 +31,9 @@
     "angular-ui-router": "^0.3.0",
     "angularfire": "^1.2.0",
     "blockly": "https://github.com/google/blockly/archive/master.tar.gz",
-    "font-awesome": "^4.6.3"
+    "font-awesome": "^4.6.3",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0"
   },
   "devDependencies": {
     "codelyzer": "0.0.12",

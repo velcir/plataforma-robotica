@@ -8,5 +8,6 @@ export const app: angular.IComponentOptions = {
 AppController.$inject = ['Usuario'];
 
 function AppController(usuario: Usuario) {
-  this.usuario = usuario;
+  const $ctrl = this;
+  $ctrl.usuario = usuario;
 }
