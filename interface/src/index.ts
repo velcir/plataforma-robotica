@@ -16,9 +16,11 @@ const ngModule = angular.module('app', [
 
 import {routesConfig} from './config/routes.config';
 import {themingConfig} from './config/theme.config';
+import {blocklyConfig} from './config/editor.config';
 
 import {Firebase} from './common/services/firebase.service';
 import {Usuario, runOnRouteError} from './common/services/usuario.service';
+import {Editor} from './common/services/editor.service';
 
 import {app} from './components/app/app.component';
 import {login} from './components/login/login.component';
@@ -28,8 +30,10 @@ ngModule
   .value('FIREBASE_URL', 'https://plataformarobotica.firebaseio.com/')
   .service('Firebase', Firebase)
   .service('Usuario', Usuario)
+  .service('Editor', Editor)
   .config(routesConfig)
   .config(themingConfig)
+  .config(blocklyConfig)
   .run(runOnRouteError)
   .component('app', app)
   .component('login', login)
