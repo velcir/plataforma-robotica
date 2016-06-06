@@ -1,13 +1,14 @@
 import {Editor} from '../../common/services/editor.service';
+import IToastService = angular.material.IToastService;
 
 export const editor: angular.IComponentOptions = {
   template: require('./editor.component.html'),
   controller: EditorController
 };
 
-EditorController.$inject = ['$timeout', 'Editor'];
+EditorController.$inject = ['$timeout', 'Editor', '$mdToast'];
 
-function EditorController($timeout, editorService: Editor) {
+function EditorController($timeout, editorService: Editor, $mdToast: IToastService) {
   const $ctrl = this;
 
   $ctrl.submeterPrograma = submeterPrograma;
@@ -29,11 +30,16 @@ function EditorController($timeout, editorService: Editor) {
   }
 
   function submeterPrograma() {
+    const toast = $mdToast.simple();
+
     try {
       const programa = editorService.blocklyParser(this.workspace);
       editorService.submeterPrograma(programa);
+      toast.textContent('Programa enviado com sucesso!');
     } catch (e) {
-      console.error(e);
+      toast.textContent(e);
     }
+
+    $mdToast.show(toast);
   }
 }

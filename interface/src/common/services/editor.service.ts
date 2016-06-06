@@ -4,14 +4,10 @@ import {Usuario} from './usuario.service';
 export class Editor {
   static $inject = ['Firebase', 'Usuario'];
 
-  programas: AngularFireArray;
-
-  constructor(private firebase: Firebase, private usuario: Usuario) {
-    this.programas = firebase.loadArray(`programas`);
-  }
+  constructor(private firebase: Firebase, private usuario: Usuario) {}
 
   submeterPrograma(programa) {
-    this.programas.$add({usuario: this.usuario.id, programa});
+    this.firebase.loadArray(`programas`).$add({usuario: this.usuario.id, programa});
   }
 
   blocklyParser(workspace) {
@@ -48,5 +44,13 @@ function noInput(block) {
 }
 
 function numberInput(block) {
-  return [block.type, parseInt(block.inputList[0].fieldRow[1].text_)];
+
+  const valor = block.inputList[0].fieldRow[1].text_;
+
+  if (/^\d+$/.test(valor)) {
+    return [block.type, parseInt(valor)];
+  } else {
+    const label = block.inputList[0].fieldRow[0].text_;
+    throw `Preencha o campo '${label}' com um valor numérico!`;
+  }
 }

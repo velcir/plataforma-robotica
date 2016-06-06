@@ -19,7 +19,7 @@ serialPort.on('data', (data) => {
   }
 });
 
-const ref = new Firebase('https://plataforma-robotica.firebaseio.com');
+const ref = new Firebase('https://plataformarobotica.firebaseio.com');
 
 login();
 ref.offAuth(login);

@@ -1,6 +1,6 @@
 var Firebase = require('firebase');
 
-var ref = new Firebase("https://plataforma-robotica.firebaseio.com");
+var ref = new Firebase("https://plataformarobotica.firebaseio.com");
 
 login();
 ref.offAuth(login);

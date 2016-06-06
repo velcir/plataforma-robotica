@@ -6,8 +6,9 @@
   "angular-cli": {},
   "scripts": {
     "postinstall": "typings install",
-    "start": "gulp blockly && webpack --colors --watch & live-server --watch=www --port=3000",
-    "build": "gulp blockly && NODE_ENV=production webpack --colors"
+    "start": "gulp blockly && webpack --colors --watch & npm run server",
+    "build": "gulp blockly && NODE_ENV=production webpack --colors",
+    "server": "live-server --watch=dist --port=3000"
   },
   "repository": {
     "type": "git",
