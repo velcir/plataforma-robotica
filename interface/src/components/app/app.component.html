@@ -3,6 +3,10 @@
     <div class="md-toolbar-tools">
       <a flex ui-sref="editor">Plataforma Robótica</a>
       <span ng-show="$ctrl.usuario.perfil" layout="row">
+        <md-button class="md-icon-button" ui-sref="editor" aria-label="Histórico">
+          <md-tooltip>Histórico</md-tooltip>
+          <md-icon md-font-icon="fa-history" class="fa"></md-icon>
+        </md-button>
         <md-button ui-sref="editor" class="md-icon-button">
           <md-tooltip>{{ $ctrl.usuario.perfil.nome }}</md-tooltip>
           <img ng-src="{{ $ctrl.usuario.perfil.foto }}">

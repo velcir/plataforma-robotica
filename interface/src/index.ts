@@ -24,7 +24,10 @@ import {Editor} from './common/services/editor.service';
 
 import {app} from './components/app/app.component';
 import {login} from './components/login/login.component';
+
 import {editor} from './components/editor/editor.component';
+import {sidenav} from './components/editor/sidenav/sidenav.component';
+import {blockly} from './components/editor/blockly/blockly.component';
 
 ngModule
   .value('FIREBASE_URL', 'https://plataformarobotica.firebaseio.com/')
@@ -37,7 +40,9 @@ ngModule
   .run(runOnRouteError)
   .component('app', app)
   .component('login', login)
-  .component('editor', editor);
+  .component('editor', editor)
+  .component('sidenav', sidenav)
+  .component('blockly', blockly);
 
 angular.element(document).ready(() => {
   angular.bootstrap(document, [ngModule.name]);

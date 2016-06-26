@@ -4,14 +4,17 @@ import {Usuario} from './usuario.service';
 export class Editor {
   static $inject = ['Firebase', 'Usuario'];
 
+  public workspace;
+
   constructor(private firebase: Firebase, private usuario: Usuario) {}
 
-  submeterPrograma(programa) {
+  public submeterPrograma() {
+    const programa = this.blocklyParser();
     this.firebase.loadArray(`programas`).$add({usuario: this.usuario.id, programa});
   }
 
-  blocklyParser(workspace) {
-    const blocks = workspace.getTopBlocks(true);
+  private blocklyParser() {
+    const blocks = this.workspace.getTopBlocks(true);
 
     if (!blocks.length) {
       throw 'Adicione uma ou mais operações no programa!';
@@ -22,7 +25,7 @@ export class Editor {
     }
   }
 
-  blockParser(block) {
+  private blockParser(block) {
     const child = block.childBlocks_.length && block.childBlocks_[0];
     return [PARSERS[block.type](block)].concat(child ? this.blockParser(child) : []);
   }

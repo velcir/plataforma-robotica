@@ -4,6 +4,9 @@ $fa-font-path: '../node_modules/font-awesome/fonts' !default;
 @import '../node_modules/font-awesome/scss/font-awesome';
 @import 'components/app/app.component';
 @import 'components/login/login.component';
+@import 'components/editor/editor.component';
+@import 'components/editor/blockly/blockly.component';
+@import 'components/editor/sidenav/sidenav.component';
 
 .center {
   text-align: center;
