@@ -30,7 +30,12 @@ import {sidenav} from './components/editor/sidenav/sidenav.component';
 import {blockly} from './components/editor/blockly/blockly.component';
 
 ngModule
-  .value('FIREBASE_URL', 'https://plataformarobotica.firebaseio.com/')
+  .value('FIREBASE_CONFIG', {
+    apiKey: 'AIzaSyAZLnIyvKKcIsr-rYMEY8tKm_2rGG3NPmQ',
+    authDomain: 'plataforma-robotica-7d010.firebaseapp.com',
+    databaseURL: 'https://plataforma-robotica-7d010.firebaseio.com',
+    storageBucket: ''
+  })
   .service('Firebase', Firebase)
   .service('Usuario', Usuario)
   .service('Editor', Editor)

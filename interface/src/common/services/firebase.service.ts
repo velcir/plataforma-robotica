@@ -1,20 +1,22 @@
-import * as FirebaseLib from 'firebase';
+import * as firebase from 'firebase';
 import * as angular from 'angular';
 
 export class Firebase {
-  public auth: AngularFireAuth;
+  public auth: any;
 
   private cache = {};
+  private lib: any = firebase;
 
   /** @ngInject */
-  constructor(private FIREBASE_URL, private $firebaseArray, private $firebaseObject,
+  constructor(private FIREBASE_CONFIG, private $firebaseArray, private $firebaseObject,
               $firebaseAuth, private $q) {
-    this.auth = $firebaseAuth(new FirebaseLib(this.FIREBASE_URL));
+    this.lib.initializeApp(this.FIREBASE_CONFIG);
+    this.auth = $firebaseAuth();
   }
 
   loadArray(path): AngularFireArray {
     if (!this.cache[path]) {
-      this.cache[path] = this.$firebaseArray(new FirebaseLib(this.FIREBASE_URL + path));
+      this.cache[path] = this.$firebaseArray(this.lib.database().ref().child(path));
     }
 
     return this.cache[path];
@@ -22,7 +24,7 @@ export class Firebase {
 
   loadObject(path): AngularFireObject {
     if (!this.cache[path]) {
-      this.cache[path] = this.$firebaseObject(new FirebaseLib(this.FIREBASE_URL + path));
+      this.cache[path] = this.$firebaseObject(this.lib.database().ref().child(path));
     }
 
     return this.cache[path];
@@ -30,7 +32,7 @@ export class Firebase {
 
   exists(path) {
     return this.$q((resolve, reject) => {
-      const ref = (new FirebaseLib(this.FIREBASE_URL + path));
+      const ref = this.lib.database().ref().child(path);
       ref.once('value', value => resolve(value.exists()), reject);
     });
   }

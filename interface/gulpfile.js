@@ -9,5 +9,5 @@ gulp.task('blockly', function() {
       './node_modules/blockly/msg/js/pt-br.js'
     ])
     .pipe(concat('blockly.js'))
-    .pipe(gulp.dest('./dist/'));
+    .pipe(gulp.dest('./public/dist/'));
 });
