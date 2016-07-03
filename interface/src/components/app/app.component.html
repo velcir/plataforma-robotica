@@ -7,7 +7,7 @@
           <md-tooltip>Histórico</md-tooltip>
           <md-icon md-font-icon="fa-history" class="fa"></md-icon>
         </md-button>
-        <md-button ui-sref="editor" class="md-icon-button">
+        <md-button ui-sref="editor" class="md-icon-button" ng-if="$ctrl.usuario.perfil.foto">
           <md-tooltip>{{ $ctrl.usuario.perfil.nome }}</md-tooltip>
           <img ng-src="{{ $ctrl.usuario.perfil.foto }}">
         </md-button>
