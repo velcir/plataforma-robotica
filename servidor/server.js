@@ -1,9 +1,16 @@
-const Firebase = require('firebase');
+const firebase = require('firebase');
 const Rx = require('rxjs/Rx');
+
+firebase.initializeApp({
+  serviceAccount: "plataforma-robotica-f198a5fef1f0.json",
+  databaseURL: "https://plataforma-robotica-7d010.firebaseio.com"
+});
+
+const ref = firebase.database().ref("programas");
 
 const sp = require('serialport');
 
-const serialPort = new sp.SerialPort('/dev/ttyACM0', {
+const serialPort = new sp('/dev/ttyACM0', {
   baudrate: 9600,
   parser: sp.parsers.readline('\n')
 });
@@ -19,17 +26,6 @@ serialPort.on('data', (data) => {
   }
 });
 
-const ref = new Firebase('https://plataformarobotica.firebaseio.com');
-
-login();
-ref.offAuth(login);
-
-function login() {
-  ref.authWithPassword({email: 'admin@admin.com', password: '4dm1n'});
-}
-
-const observable = obterProgramasFirebase();
-
 var index = -1;
 const programas = {};
 const logs = {};
@@ -41,12 +37,12 @@ function log(info) {
   }
 }
 
-observable
+obterProgramasFirebase()
   .map(snapshot => {
     const programa = snapshot.val().programa;
     logs[index + 1] = ['inicio'];
     index += programa.length;
-    programas[index] = snapshot.key();
+    programas[index] = snapshot.key;
     return programa;
   })
   .concatMap((programa) => Rx.Observable.from(programa))
@@ -68,19 +64,14 @@ function obterProgramasFirebase() {
     const next = observer.next.bind(observer);
     const error = observer.error.bind(observer);
 
-    ref.onAuth((data) => {
-      if (data) {
-        ref.child('programas').on('child_added', next, error);
-      }
-    });
-
-    return () => ref.child('programas').off('child_added', next);
+    ref.on('child_added', next, error);
+    return () => ref.off('child_added', next);
   });
 }
 
 function removerProgramaFirebase(key) {
   return new Rx.Observable(observer => {
-    ref.child('programas/' + key).remove(error => {
+    ref.child(key).remove(error => {
       if (error) {
         observer.error(error);
       } else {
