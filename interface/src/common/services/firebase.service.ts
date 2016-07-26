@@ -41,4 +41,8 @@ export class Firebase {
     angular.forEach(<any[]>this.cache, ref => ref.$destroy());
     this.cache = {};
   }
+
+  storageUrl(path) {
+    return this.lib.storage().ref(path).getDownloadURL();
+  }
 }

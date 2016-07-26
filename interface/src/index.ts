@@ -29,12 +29,14 @@ import {editor} from './components/editor/editor.component';
 import {sidenav} from './components/editor/sidenav/sidenav.component';
 import {blockly} from './components/editor/blockly/blockly.component';
 
+// ffmpeg -y -i /dev/video0 -s 320x240 -codec:v libtheora -qscale:v 7 -codec:a libvorbis -qscale:a 5 output.ogv
+
 ngModule
   .value('FIREBASE_CONFIG', {
     apiKey: 'AIzaSyAZLnIyvKKcIsr-rYMEY8tKm_2rGG3NPmQ',
     authDomain: 'plataforma-robotica-7d010.firebaseapp.com',
     databaseURL: 'https://plataforma-robotica-7d010.firebaseio.com',
-    storageBucket: ''
+    storageBucket: 'open-peer-instruction.appspot.com'
   })
   .service('Firebase', Firebase)
   .service('Usuario', Usuario)
