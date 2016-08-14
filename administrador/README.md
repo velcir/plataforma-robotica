@@ -14,11 +14,13 @@
 
 ## Configurando (config.json)
 
-- Firebase (https://firebase.google.com/docs/server/setup)
-- S3 (https://console.aws.amazon.com/iam/home#security_credential) (Access Keys (Access Key ID and Secret Access Key)
-- Serial (/dev/ttyACM0, verifique em qual porta esta rodando o Arduino)
+Firebase (https://firebase.google.com/docs/server/setup)
 
+S3 (https://console.aws.amazon.com/iam/home#security_credential) (Access Keys (Access Key ID and Secret Access Key)
 
+Serial (/dev/ttyACM0, verifique em qual porta esta rodando o Arduino)
+
+```json
     {
       "firebase": {
         "serviceAccount": {
@@ -43,3 +45,4 @@
       },
       "serial": "/dev/ttyACM0"
     }
+```
