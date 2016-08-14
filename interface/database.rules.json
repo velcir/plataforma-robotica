@@ -1,5 +1,10 @@
 {
   "rules": {
+    "programas": {
+      ".indexOn": "status",
+      ".write": "!data.exists()",
+      ".read": "data.child('usuario').val() == auth.uid"
+    },
     ".read": "auth != null",
     ".write": "auth != null"
   }
