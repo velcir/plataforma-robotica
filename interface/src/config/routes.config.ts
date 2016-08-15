@@ -15,6 +15,11 @@ export function routesConfig($stateProvider: angular.ui.IStateProvider,
       url: '/login',
       template: '<login></login>'
     })
+    .state('historico', {
+      url: '/historico',
+      template: '<historico></historico>',
+      resolve: {loginRequired}
+    })
     .state('editor', {
       url: '/editor',
       template: '<editor></editor>',

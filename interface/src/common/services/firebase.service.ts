@@ -1,48 +1,30 @@
 import * as firebase from 'firebase';
-import * as angular from 'angular';
 
 export class Firebase {
   public auth: any;
 
-  private cache = {};
-  private lib: any = firebase;
-
   /** @ngInject */
   constructor(private FIREBASE_CONFIG, private $firebaseArray, private $firebaseObject,
-              $firebaseAuth, private $q) {
-    this.lib.initializeApp(this.FIREBASE_CONFIG);
+              $firebaseAuth) {
+    firebase.initializeApp(this.FIREBASE_CONFIG);
     this.auth = $firebaseAuth();
   }
 
-  loadArray(path): AngularFireArray {
-    if (!this.cache[path]) {
-      this.cache[path] = this.$firebaseArray(this.lib.database().ref().child(path));
-    }
-
-    return this.cache[path];
+  createRef(path): firebase.database.Reference {
+    return firebase.database().ref(path);
   }
 
-  loadObject(path): AngularFireObject {
-    if (!this.cache[path]) {
-      this.cache[path] = this.$firebaseObject(this.lib.database().ref().child(path));
-    }
-
-    return this.cache[path];
+  loadArray(ref) {
+    ref = typeof ref === 'string' ? this.createRef(ref) : ref;
+    return this.$firebaseArray(ref);
   }
 
-  exists(path) {
-    return this.$q((resolve, reject) => {
-      const ref = this.lib.database().ref().child(path);
-      ref.once('value', value => resolve(value.exists()), reject);
-    });
-  }
-
-  unload() {
-    angular.forEach(<any[]>this.cache, ref => ref.$destroy());
-    this.cache = {};
+  loadObject(ref) {
+    ref = typeof ref === 'string' ? this.createRef(ref) : ref;
+    return this.$firebaseObject(ref);
   }
 
   storageUrl(path) {
-    return this.lib.storage().ref(path).getDownloadURL();
+    return firebase.storage().ref(path).getDownloadURL();
   }
 }

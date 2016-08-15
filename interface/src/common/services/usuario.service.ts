@@ -1,10 +1,12 @@
 import {Firebase} from './firebase.service';
 
-export interface IPerfil extends AngularFireObject {
+export interface IPerfil {
   id: string;
   nome: string;
   foto: string;
   aula: string;
+  $loaded: any;
+  $save: any;
 }
 
 export class Usuario {
@@ -54,7 +56,6 @@ export class Usuario {
   }
 
   logout() {
-    this.firebase.unload();
     this.firebase.auth.$signOut();
     this.authData = null;
     this.perfil = null;

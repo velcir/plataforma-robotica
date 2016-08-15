@@ -2,10 +2,22 @@
   "rules": {
     "programas": {
       ".indexOn": "status",
-      ".write": "!data.exists()",
-      ".read": "data.child('usuario').val() == auth.uid"
+      "$pid": {
+        ".write": "!data.exists()",
+        ".read": "data.child('usuario').val() == auth.uid"
+      }
     },
-    ".read": "auth != null",
-    ".write": "auth != null"
+    "usuarios": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      }
+    },
+    "historico": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      }
+    }
   }
 }

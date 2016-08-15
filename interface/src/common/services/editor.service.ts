@@ -1,16 +1,29 @@
-import {Firebase} from './firebase.service';
-import {Usuario} from './usuario.service';
+import { Usuario } from './usuario.service';
+import { Firebase } from './firebase.service';
 
 export class Editor {
-  static $inject = ['Firebase', 'Usuario'];
+  static $inject = ['Usuario', 'Firebase'];
 
   public workspace;
 
-  constructor(private firebase: Firebase, private usuario: Usuario) {}
+  constructor(private usuario: Usuario, private firebase: Firebase) {
+  }
 
   public submeterPrograma() {
-    const programa = this.blocklyParser();
-    this.firebase.loadArray(`programas`).$add({usuario: this.usuario.id, programa});
+    const programa = {
+      usuario: this.usuario.id,
+      programa: this.blocklyParser()
+    };
+
+    return this.firebase.createRef('programas').push(programa)
+      .then((data: any) =>
+        this.firebase.createRef(`historico/${this.usuario.id}/${data.key}`).set(programa)
+      );
+  }
+
+  public obterProgramas() {
+    const ref = this.firebase.createRef(`historico/${this.usuario.id}`);
+    return this.firebase.loadArray(ref.orderByKey().limitToLast(10));
   }
 
   private blocklyParser() {
@@ -27,23 +40,8 @@ export class Editor {
 
   private blockParser(block) {
     const child = block.childBlocks_.length && block.childBlocks_[0];
-    return [PARSERS[block.type](block)].concat(child ? this.blockParser(child) : []);
+    return [numberInput(block)].concat(child ? this.blockParser(child) : []);
   }
-}
-
-const PARSERS = {
-  girar_esquerda: numberInput,
-  girar_direita: numberInput,
-  abrir_pinca: noInput,
-  fechar_pinca: noInput,
-  mover_frente: numberInput,
-  mover_baixo: numberInput,
-  mover_tras: numberInput,
-  mover_cima: numberInput,
-};
-
-function noInput(block) {
-  return [block.type];
 }
 
 function numberInput(block) {

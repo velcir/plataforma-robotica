@@ -1,11 +1,10 @@
-<div layout="row">
-  <blockly flex="85" ng-style="$ctrl.style"></blockly>
-  <sidenav flex="15" ng-style="$ctrl.style"></sidenav>
-</div>
-
-<div layout="row" layout-align="center center">
-  <md-button class="md-raised md-primary"
-             ng-click="$ctrl.submeterPrograma()">
-    Submeter p/ execução
-  </md-button>
+<div layout-gt-sm="row">
+  <div layout="column" flex-gt-sm="80">
+    <blockly ng-style="$ctrl.style"></blockly>
+    <md-button class="md-raised md-primary"
+               ng-click="$ctrl.submeterPrograma()">
+      Submeter p/ execução
+    </md-button>
+  </div>
+  <sidenav flex-gt-sm="20" ng-style="$ctrl.style"></sidenav>
 </div>

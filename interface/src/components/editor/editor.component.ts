@@ -1,4 +1,4 @@
-import {Editor} from '../../common/services/editor.service';
+import { Editor } from '../../common/services/editor.service';
 import IToastService = angular.material.IToastService;
 
 export const editor: angular.IComponentOptions = {
@@ -14,15 +14,17 @@ function EditorController(editorService: Editor, $mdToast: IToastService) {
   $ctrl.submeterPrograma = submeterPrograma;
 
   function submeterPrograma() {
-    const toast = $mdToast.simple();
-
     try {
-      editorService.submeterPrograma();
-      toast.textContent('Programa enviado com sucesso!');
+      editorService
+        .submeterPrograma()
+        .then(() => mostrarToast('Programa enviado com sucesso!'))
+        .catch(() => mostrarToast('Programa não pode ser enviado!'));
     } catch (e) {
-      toast.textContent(e);
+      mostrarToast(e);
     }
 
-    $mdToast.show(toast);
+    function mostrarToast(msg) {
+      $mdToast.show($mdToast.simple().textContent(msg));
+    }
   }
 }

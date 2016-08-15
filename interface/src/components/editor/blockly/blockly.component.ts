@@ -1,4 +1,5 @@
 import {Editor} from '../../../common/services/editor.service';
+import {BLOCOS} from '../../../config/editor.config';
 
 export const blockly: angular.IComponentOptions = {
   template: require('./blockly.component.html'),
@@ -9,6 +10,8 @@ BlocklyController.$inject = ['$timeout', '$window', 'Editor'];
 
 function BlocklyController($timeout, $window, editorService: Editor) {
   const $ctrl = this;
+
+  $ctrl.tipos = Object.keys(BLOCOS);
 
   $ctrl.$onInit = $onInit;
 

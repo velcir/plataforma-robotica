@@ -1,108 +1,42 @@
+import * as angular from 'angular';
+
+export enum Cores {
+  Verde = 130,
+  Azul = 220,
+  Vermelho = 15,
+  Rosa = 300,
+  Amarelo = 65
+}
+
+export const BLOCOS = {
+  girar_base_esquerda: [30, Cores.Verde, 'Girar base p/ esquerda'],
+  girar_base_direita: [30, Cores.Verde, 'Girar base p/ direita'],
+  girar_ombro_frente: [10, Cores.Azul, 'Girar ombro p/ frente'],
+  girar_ombro_tras: [10, Cores.Azul, 'Girar ombro p/ tras'],
+  girar_cotovelo_cima: [20, Cores.Vermelho, 'Girar cotovelo p/ frente'],
+  girar_cotovelo_baixo: [20, Cores.Vermelho, 'Girar cotovelo p/ tras'],
+  girar_punho_frente: [10, Cores.Rosa, 'Girar punho p/ frente'],
+  girar_punho_tras: [10, Cores.Rosa, 'Girar punho p/ tras'],
+  abrir_garra: [25, Cores.Amarelo, 'Abrir a garra'],
+  fechar_garra: [25, Cores.Amarelo, 'Fechar a garra'],
+};
 
 export function blocklyConfig() {
-  Blockly.Blocks['girar_esquerda'] = {
-    init() {
-      let vm: any = this;
-      vm.appendDummyInput()
-        .appendField('Girar p/ esquerda')
-        .appendField(new Blockly.FieldAngle(90), 'graus');
-      vm.setPreviousStatement(true);
-      vm.setNextStatement(true);
-      vm.setColour(120);
-      vm.setTooltip('');
-    }
-  };
+  angular.forEach(BLOCOS, (config, key) => {
+    const [valorDefault, cor, label] = config;
 
-  Blockly.Blocks['girar_direita'] = {
-    init() {
-      let vm: any = this;
-      vm.appendDummyInput()
-        .appendField('Girar p/ direita')
-        .appendField(new Blockly.FieldAngle(90), 'graus');
-      vm.setPreviousStatement(true);
-      vm.setNextStatement(true);
-      vm.setColour(120);
-      vm.setTooltip('');
-    }
-  };
-
-  Blockly.Blocks['abrir_pinca'] = {
-    init() {
-      let vm: any = this;
-      vm.appendDummyInput()
-        .appendField('Abrir a pinça');
-      vm.setPreviousStatement(true);
-      vm.setNextStatement(true);
-      vm.setColour(210);
-      vm.setTooltip('');
-    }
-  };
-
-  Blockly.Blocks['fechar_pinca'] = {
-    init() {
-      let vm: any = this;
-      vm.appendDummyInput()
-        .appendField('Fechar a pinça');
-      vm.setPreviousStatement(true);
-      vm.setNextStatement(true);
-      vm.setColour(20);
-      vm.setTooltip('');
-    }
-  };
-
-  Blockly.Blocks['mover_frente'] = {
-    init() {
-      let vm: any = this;
-      vm.appendDummyInput()
-        .appendField('Mover p/ Frente')
-        .appendField(new Blockly.FieldTextInput(''), 'distancia')
-        .appendField('cm');
-      vm.setPreviousStatement(true);
-      vm.setNextStatement(true);
-      vm.setColour(160);
-      vm.setTooltip('');
-    }
-  };
-
-  Blockly.Blocks['mover_baixo'] = {
-    init() {
-      let vm: any = this;
-      vm.appendDummyInput()
-        .appendField('Mover p/ Baixo')
-        .appendField(new Blockly.FieldTextInput(''), 'distancia')
-        .appendField('cm');
-      vm.setPreviousStatement(true);
-      vm.setNextStatement(true);
-      vm.setColour(160);
-      vm.setTooltip('');
-    }
-  };
-
-  Blockly.Blocks['mover_tras'] = {
-    init() {
-      let vm: any = this;
-      vm.appendDummyInput()
-        .appendField('Mover p/ Tras')
-        .appendField(new Blockly.FieldTextInput(''), 'distancia')
-        .appendField('cm');
-      vm.setPreviousStatement(true);
-      vm.setNextStatement(true);
-      vm.setColour(160);
-      vm.setTooltip('');
-    }
-  };
-
-  Blockly.Blocks['mover_cima'] = {
-    init() {
-      let vm: any = this;
-      vm.appendDummyInput()
-        .appendField('Mover p/ Cima')
-        .appendField(new Blockly.FieldTextInput(''), 'distancia')
-        .appendField('cm');
-      vm.setPreviousStatement(true);
-      vm.setNextStatement(true);
-      vm.setColour(160);
-      vm.setTooltip('');
-    }
-  };
+    Blockly.Blocks[key] = {
+      init() {
+        let vm: any = this;
+        vm.appendDummyInput()
+          .appendField(label)
+          .appendField(new Blockly.FieldAngle(valorDefault), 'graus')
+          .appendField('graus');
+        vm.setPreviousStatement(true);
+        vm.setNextStatement(true);
+        vm.setColour(cor);
+        vm.setTooltip('');
+      }
+    };
+  });
 }

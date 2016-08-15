@@ -1,4 +1,4 @@
-/// <reference path="index.d.ts" />
+/// <reference path="typings.d.ts" />
 
 import * as angular from 'angular';
 
@@ -14,22 +14,21 @@ const ngModule = angular.module('app', [
   'ui.router'
 ]);
 
-import {routesConfig} from './config/routes.config';
-import {themingConfig} from './config/theme.config';
-import {blocklyConfig} from './config/editor.config';
+import { routesConfig } from './config/routes.config';
+import { themingConfig } from './config/theme.config';
+import { blocklyConfig } from './config/editor.config';
 
-import {Firebase} from './common/services/firebase.service';
-import {Usuario, runOnRouteError} from './common/services/usuario.service';
-import {Editor} from './common/services/editor.service';
+import { Firebase } from './common/services/firebase.service';
+import { Usuario, runOnRouteError } from './common/services/usuario.service';
+import { Editor } from './common/services/editor.service';
 
-import {app} from './components/app/app.component';
-import {login} from './components/login/login.component';
+import { app } from './components/app/app.component';
+import { login } from './components/login/login.component';
+import { historico } from './components/historico/historico.component';
 
-import {editor} from './components/editor/editor.component';
-import {sidenav} from './components/editor/sidenav/sidenav.component';
-import {blockly} from './components/editor/blockly/blockly.component';
-
-// ffmpeg -y -i /dev/video0 -s 320x240 -codec:v libtheora -qscale:v 7 -codec:a libvorbis -qscale:a 5 output.ogv
+import { editor } from './components/editor/editor.component';
+import { sidenav } from './components/editor/sidenav/sidenav.component';
+import { blockly } from './components/editor/blockly/blockly.component';
 
 ngModule
   .value('FIREBASE_CONFIG', {
@@ -47,6 +46,7 @@ ngModule
   .run(runOnRouteError)
   .component('app', app)
   .component('login', login)
+  .component('historico', historico)
   .component('editor', editor)
   .component('sidenav', sidenav)
   .component('blockly', blockly);

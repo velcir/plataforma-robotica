@@ -1,0 +1,16 @@
+<md-content>
+  <div layout="row">
+    <md-button class="md-icon-button" ui-sref="editor" style="margin: 8px">
+      <md-tooltip>Voltar</md-tooltip>
+      <md-icon md-font-icon="fa-arrow-circle-left" class="fa" style="font-size: 36px"></md-icon>
+    </md-button>
+    <h3 flex class="center">Histórico</h3>
+  </div>
+  <div>
+
+    <p ng-repeat="programa in $ctrl.programas track by $index">
+      {{ programa | json }}
+    </p>
+
+  </div>
+</md-content>
