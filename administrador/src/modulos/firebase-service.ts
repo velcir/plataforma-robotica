@@ -1,23 +1,39 @@
 import * as firebase from 'firebase';
-
-enum Status {Enviado = 0, Validado = 1, Executado = 2}
+import {join} from 'path';
 
 interface IFirebaseConfig {
-  serviceAccount: string,
-  databaseURL: string
+  serviceAccount: string;
+  databaseURL: string;
 }
 
-let ref;
+interface IDados {
+  status?: number;
+  video?: string;
+}
+
+function programas(key?: string) {
+  return firebase.database().ref(join('programas', key || ''));
+}
+
+function historico(key?: string) {
+  return firebase.database().ref(join('historico', key || ''));
+}
 
 export function inicializar(config: IFirebaseConfig) {
   firebase.initializeApp(config);
-  ref = firebase.database().ref('/programas');
 }
 
-export async function obterProximoPrograma() {
-  return ref.orderByChild("status").equalTo(Status.Validado).once('child_added');
+export async function obterProximoPrograma(status: number) {
+  return programas().orderByChild('status').equalTo(status).once('child_added');
 }
 
-export async function finalizarPrograma(snapshot: firebase.database.DataSnapshot, video) {
-  return ref.child(snapshot.key).update({status: Status.Executado, video});
+export async function atualizarPrograma(snapshot, dados: IDados) {
+  const [key, programa] = [snapshot.key, snapshot.val()];
+  const update = Object.assign(programa, dados);
+
+  return Promise.all([
+    programas(key).update(update),
+    historico(join(programa.usuario, key)).update(update)
+  ]);
 }
+

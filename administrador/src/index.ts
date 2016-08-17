@@ -1,5 +1,3 @@
-import {join} from 'path';
-
 import * as firebaseService from './modulos/firebase-service';
 import * as s3 from './modulos/s3';
 import * as camera  from './modulos/camera';
@@ -7,22 +5,31 @@ import * as braco from './modulos/braco';
 
 const config = require('./../config.json');
 
+import {Status} from '../../compartilhado/config';
+import {validarPrograma} from '../../compartilhado/validador';
+
 firebaseService.inicializar(config.firebase);
 s3.inicializar(config.s3);
 braco.inicializar(config.serial);
 
-iniciarExecutor().catch(err => console.error(err));
+Promise
+  .all([
+    iniciarExecutor(),
+    iniciarValidador()
+  ])
+  .catch(err => console.error(err));
 
 async function iniciarExecutor() {
-  let snapshot;
-  while (snapshot = await firebaseService.obterProximoPrograma()) {
+  while (true) {
+    const snapshot = await firebaseService.obterProximoPrograma(Status.Validado);
 
     console.log('Iniciando: ', snapshot.key);
 
-    let nmArquivo = `videos/${snapshot.key}.ogv`;
-    let dsCaminho = join(__dirname, '..', nmArquivo);
+    await firebaseService.atualizarPrograma(snapshot, { status: Status.Executando });
 
-    let ffmpeg = camera.iniciarGravacao(dsCaminho);
+    let nmArquivo = `videos/${snapshot.key}.ogv`;
+
+    let ffmpeg = camera.iniciarGravacao(nmArquivo);
 
     await camera.delay(500);
 
@@ -32,10 +39,25 @@ async function iniciarExecutor() {
 
     camera.finalizarGravacao(ffmpeg);
 
-    let dsUrlS3 = await s3.enviarVideo(dsCaminho, nmArquivo);
+    let dsUrlS3 = await s3.enviarVideo(nmArquivo);
 
-    await firebaseService.finalizarPrograma(snapshot, dsUrlS3);
+    await firebaseService.atualizarPrograma(snapshot, {
+      status: Status.Finalizado,
+      video: dsUrlS3
+    });
 
     console.log('Finalizando: ', snapshot.key);
+  }
+}
+
+async function iniciarValidador() {
+  while (true) {
+    const snapshot = await firebaseService.obterProximoPrograma(Status.Enviado);
+
+    const validado = validarPrograma(snapshot.val().programa);
+
+    await firebaseService.atualizarPrograma(snapshot, {
+      status: validado ? Status.Validado : Status.Rejeitado
+    });
   }
 }

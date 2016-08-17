@@ -10,7 +10,7 @@ export async function delay(ms) {
 }
 
 export function iniciarGravacao(arquivo) {
-  return spawn('ffmpeg', [...FFMPEG_PARAMS, arquivo])
+  return spawn('ffmpeg', [...FFMPEG_PARAMS, arquivo]);
 }
 
 export function finalizarGravacao(ffmpeg) {

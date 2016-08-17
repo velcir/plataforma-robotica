@@ -1,5 +1,6 @@
 import { Usuario } from './usuario.service';
 import { Firebase } from './firebase.service';
+import { Status } from '../../../../compartilhado/config';
 
 export class Editor {
   static $inject = ['Usuario', 'Firebase'];
@@ -12,7 +13,8 @@ export class Editor {
   public submeterPrograma() {
     const programa = {
       usuario: this.usuario.id,
-      programa: this.blocklyParser()
+      programa: this.blocklyParser(),
+      status: Status.Enviado
     };
 
     return this.firebase.createRef('programas').push(programa)

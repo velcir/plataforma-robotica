@@ -1,21 +1,22 @@
-//import * as sp from 'serialport';
-import sp from './fake-serialport';
+// import * as SerialPort from 'serialport';
+import {FakeSerialPort as SerialPort} from './fake-serialport';
+import {instrucoes} from '../../../compartilhado/config';
 
 let serialPort;
 
 export function inicializar(serial) {
-  serialPort = new sp(serial, {
+  serialPort = new SerialPort(serial, {
     baudrate: 9600,
-    parser: sp.parsers.readline('\n')
+    parser: SerialPort.parsers.readline('\n')
   });
 }
 
 export async function executarPrograma(programa) {
-  for (let instrucoes of programa) {
-    console.log(instrucoes);
-    instrucoes = obterInstrucoesArduino(instrucoes);
-    console.log(instrucoes);
-    await escreverNaSerial(instrucoes);
+  for (const [instrucao, valor] of programa) {
+    console.log(instrucao, valor);
+    const instrucoesArduino = [...instrucoes[instrucao], valor];
+    console.log(instrucoesArduino);
+    await escreverNaSerial(instrucoesArduino);
     await lerRetornoSerial();
   }
 }
@@ -23,10 +24,7 @@ export async function executarPrograma(programa) {
 function escreverNaSerial(instrucoes) {
   return Promise.all(instrucoes.map(instrucao => {
     return new Promise((resolve, reject) => {
-      serialPort.write((instrucao + ''), err => {
-        if (err) reject();
-        else resolve();
-      });
+      serialPort.write((instrucao + ''), e => e ? reject(e) : resolve(e));
     });
   }));
 }
@@ -40,34 +38,9 @@ function lerRetornoSerial() {
         reject('sem retorno');
       }
 
-      serialPort.off('data', fn)
+      serialPort.off('data', fn);
     };
 
     serialPort.on('data', fn);
   });
-}
-
-function obterInstrucoesArduino(instrucao) {
-  switch (instrucao[0]) {
-    case 'girar_base_esquerda':
-      return [2, '+', instrucao[1]];
-    case 'girar_base_direita':
-      return [2, '-', instrucao[1]];
-    case 'girar_ombro_frente':
-      return [4, '+', instrucao[1]];
-    case 'girar_ombro_tras':
-      return [4, '-', instrucao[1]];
-    case 'girar_cotovelo_cima':
-      return [6, '+', instrucao[1]];
-    case 'girar_cotovelo_baixo':
-      return [6, '-', instrucao[1]];
-    case 'girar_punho_frente':
-      return [8, '-', instrucao[1]];
-    case 'girar_punho_tras':
-      return [8, '+', instrucao[1]];
-    case 'abrir_garra':
-      return [10, '+', instrucao[1]];
-    case 'fechar_garra':
-      return [10, '+', instrucao[1]];
-  }
 }

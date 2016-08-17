@@ -1,4 +1,4 @@
-export default class sp {
+export class FakeSerialPort {
 
   static parsers = { readline(str) { } };
 
