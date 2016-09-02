@@ -31,11 +31,11 @@ async function iniciarExecutor() {
 
     let ffmpeg = camera.iniciarGravacao(nmArquivo);
 
-    await camera.delay(500);
+    await camera.delay(1000);
 
     await braco.executarPrograma(snapshot.val().programa);
 
-    await camera.delay(500);
+    await camera.delay(1000);
 
     camera.finalizarGravacao(ffmpeg);
 
@@ -53,6 +53,8 @@ async function iniciarExecutor() {
 async function iniciarValidador() {
   while (true) {
     const snapshot = await firebaseService.obterProximoPrograma(Status.Enviado);
+
+    console.log('Validando: ', snapshot.val());
 
     const validado = validarPrograma(snapshot.val().programa);
 

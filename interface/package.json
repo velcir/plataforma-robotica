@@ -6,9 +6,18 @@
   "angular-cli": {},
   "scripts": {
     "postinstall": "typings install",
-    "start": "gulp blockly && webpack --colors --watch & npm run server",
-    "build": "gulp blockly && NODE_ENV=production webpack --colors && gzip public/dist/* -krf",
-    "server": "live-server public --port=3000 --host=localhost"
+    "prestart": "npm run clean",
+    "start": "concurrently 'npm run build:blockly' 'npm run build:dev:watch' 'npm run server'",
+    "prebuild": "npm run clean",
+    "build": "concurrently 'npm run build:blockly' 'npm run build:prod'",
+    "postbuild": "npm run gzip",
+    "clean": "rm -rf public/dist",
+    "server": "live-server public --port=3000 --host=localhost",
+    "build:dev": "webpack --colors",
+    "build:dev:watch": "webpack --colors --watch",
+    "build:prod": "NODE_ENV=production webpack --colors",
+    "build:blockly": "gulp blockly",
+    "gzip": "gzip public/dist/* -krf"
   },
   "repository": {
     "type": "git",
@@ -32,9 +41,11 @@
     "angular-ui-router": "^0.3.1",
     "angularfire": "^2.0.1",
     "blockly": "https://github.com/google/blockly/archive/master.tar.gz",
+    "firebase": "^3.3.0",
     "font-awesome": "^4.6.3"
   },
   "devDependencies": {
+    "concurrently": "^2.2.0",
     "css-loader": "^0.23.1",
     "file-loader": "^0.9.0",
     "gulp": "^3.9.1",

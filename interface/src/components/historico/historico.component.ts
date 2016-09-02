@@ -1,5 +1,6 @@
 import { Editor } from '../../common/services/editor.service';
 import * as angular from 'angular';
+import {statusDescription} from '../../../../compartilhado/config';
 
 export const historico: angular.IComponentOptions = {
   template: require('./historico.component.html'),
@@ -10,6 +11,8 @@ HistoricoController.$inject = ['Editor'];
 
 function HistoricoController(editor: Editor) {
   const $ctrl = this;
+
+  $ctrl.statusDescription = statusDescription;
 
   $ctrl.$onInit = () => {
 

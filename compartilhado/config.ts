@@ -6,6 +6,14 @@ export enum Status {
   Finalizado = 4
 }
 
+export const statusDescription = {
+  [Status.Enviado]: 'Aguardando validação',
+  [Status.Validado]: 'Na fila para execução',
+  [Status.Rejeitado]: 'Inválido p/ execução',
+  [Status.Executando]: 'Em execução',
+  [Status.Finalizado]: 'Executado'
+};
+
 export enum Cores {
   Verde = 130,
   Azul = 220,
