@@ -36,14 +36,14 @@ export const blocos = {
 };
 
 export const instrucoes = {
-  girar_base_esquerda: [2, '+'],
-  girar_base_direita: [2, '-'],
-  girar_ombro_frente: [4, '+'],
-  girar_ombro_tras: [4, '-'],
+  girar_base_esquerda: [12, '+'],
+  girar_base_direita: [12, '-'],
+  girar_ombro_frente: [8, '+'],
+  girar_ombro_tras: [8, '-'],
   girar_cotovelo_cima: [6, '+'],
   girar_cotovelo_baixo: [6, '-'],
-  girar_punho_frente: [8, '+'],
-  girar_punho_tras: [8, '-'],
-  abrir_garra: [10, '+'],
-  fechar_garra: [10, '-'],
+  girar_punho_frente: [4, '+'],
+  girar_punho_tras: [4, '-'],
+  abrir_garra: [2, '+'],
+  fechar_garra: [2, '-'],
 };
