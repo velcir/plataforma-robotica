@@ -7,7 +7,7 @@ export function routesConfig($stateProvider: angular.ui.IStateProvider,
   $sceDelegateProvider.resourceUrlWhitelist([
     'self',
     'https://**.firebaseio.com/**',
-    'https://firebasestorage.googleapis.com/**'
+    'https://plataforma-robotica.s3-sa-east-1.amazonaws.com/videos/**'
   ]);
 
   $stateProvider

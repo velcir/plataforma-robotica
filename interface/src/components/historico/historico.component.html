@@ -7,10 +7,20 @@
     <h3 flex class="center">Histórico</h3>
   </div>
   <div>
-
-    <p ng-repeat="programa in $ctrl.programas track by $index">
-      {{ programa | json }}
-    </p>
-
+    <md-content>
+      <md-list class="md-dense" flex>
+        <md-list-item class="md-3-line" ng-repeat="programa in $ctrl.programas track by $index">
+          <div class="md-list-item-text" layout="column" flex>
+            <p><b>Envio:</b> {{ programa.dataEnvio }}</p>
+            <p><b>Status:</b> {{programa.status }}</p>
+            <p><b>Instruções:</b> {{ programa.instrucoes }}</p>
+          </div>
+          <div ng-if="programa.video" flex="10">
+            <video controls ng-src="{{ programa.video }}"></video>
+          </div>
+        </md-list-item>
+        <md-divider></md-divider>
+      </md-list>
+    </md-content>
   </div>
 </md-content>

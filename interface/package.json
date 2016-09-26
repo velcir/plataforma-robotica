@@ -42,7 +42,8 @@
     "angularfire": "^2.0.1",
     "blockly": "https://github.com/google/blockly/archive/master.tar.gz",
     "firebase": "^3.3.0",
-    "font-awesome": "^4.6.3"
+    "font-awesome": "^4.6.3",
+    "moment": "^2.14.1"
   },
   "devDependencies": {
     "concurrently": "^2.2.0",
