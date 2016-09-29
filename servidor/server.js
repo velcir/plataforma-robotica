@@ -31,10 +31,7 @@ const programas = {};
 const logs = {};
 
 function log(info) {
-  return (data, i) => {
-    logs[i] = (logs[i] || []).concat([[info, data]]);
-    return data;
-  }
+  return (data, i) => logs[i] = (logs[i] || []).concat([[info, data]]);
 }
 
 obterProgramasFirebase()
@@ -46,10 +43,16 @@ obterProgramasFirebase()
     return programa;
   })
   .concatMap((programa) => Rx.Observable.from(programa))
-  .map(log('instrucao'))
+  .do(log('instrucao'))
   .map(obterInstrucaoArduino)
-  .map(log('instrucaoArduino'))
+  .do(log('instrucaoArduino'))
   .concatMap(escreverSerial)
+  .do((d, i) => {
+    if (logs[i]) {
+      console.log(logs[i]);
+      delete logs[i];
+    }
+  })
   .map((d, i) => {
     const key = programas[i];
     delete programas[i];
@@ -90,10 +93,7 @@ function escreverSerial(instrucao, i) {
 
     setTimeout(() => observer.error(`timeout - escreverSerial(${instrucao})`), 30000);
 
-    return () => {
-      console.log(logs[i]);
-      delete logs[i];
-    };
+    return () => {};
   });
 }
 
