@@ -99,21 +99,25 @@ function escreverSerial(instrucao, i) {
 
 function obterInstrucaoArduino(instrucao) {
   switch (instrucao[0]) {
-    case 'girar_esquerda':
-      return [2, '+', instrucao[1]];
-    case 'girar_direita':
-      return [2, '-', instrucao[1]];
-    case 'abrir_pinca':
-      return [4, '+', 30];
-    case 'fechar_pinca':
-      return [4, '-', 30];
-    case 'mover_frente':
-      return [8, '+', instrucao[1]];
-    case 'mover_baixo':
-      return [12, '-', instrucao[1]];
-    case 'mover_tras':
-      return [8, '-', instrucao[1]];
-    case 'mover_cima':
+    case 'girar_base_esquerda':
       return [12, '+', instrucao[1]];
+    case 'girar_base_direita':
+      return [12, '-', instrucao[1]];
+    case 'girar_ombro_frente':
+      return [8, '+', instrucao[1]];
+    case 'girar_ombro_tras':
+      return [8, '-', instrucao[1]];
+    case 'girar_cotovelo_cima':
+      return [6, '+', instrucao[1]];
+    case 'girar_cotovelo_baixo':
+      return [6, '-', instrucao[1]];
+    case 'girar_punho_frente':
+      return [4, '+', instrucao[1]];
+    case 'girar_punho_tras':
+      return [4, '-', instrucao[1]];
+    case 'abrir_garra':
+      return [2, '+', instrucao[1]];
+    case 'fechar_garra':
+      return [2, '-', instrucao[1]];
   }
 }
