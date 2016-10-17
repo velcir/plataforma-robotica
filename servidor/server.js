@@ -42,7 +42,7 @@ obterProgramasFirebase()
     programas[index] = snapshot.key;
     return programa;
   })
-  .concatMap((programa) => Rx.Observable.from(programa))
+  .concatMap((programa) => Rx.Observable.from(programa).concat(RX.Observable.return(['fim'])))
   .do(log('instrucao'))
   .map(obterInstrucaoArduino)
   .do(log('instrucaoArduino'))
@@ -119,5 +119,7 @@ function obterInstrucaoArduino(instrucao) {
       return [2, '+', instrucao[1]];
     case 'fechar_garra':
       return [2, '-', instrucao[1]];
+    case 'fim':
+      return [19];
   }
 }
