@@ -37,10 +37,8 @@ function lerRetornoSerial() {
       } else {
         reject('sem retorno');
       }
-
-      serialPort.off('data', fn);
     };
 
-    serialPort.on('data', fn);
+    serialPort.once('data', fn);
   });
 }

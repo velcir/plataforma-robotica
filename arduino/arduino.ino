@@ -27,7 +27,7 @@ void setup() {
     ombroI.conecta(8,90);
     ombroII.conecta(10,180 - ombroI.read());
     base.conecta(12,97);
-    
+
 }
 
 long aguardarValorInt()
@@ -37,13 +37,13 @@ long aguardarValorInt()
     return Serial.parseInt();
 }
 
-//int ler (Suave servo){
-//  return servo.read(); 
-//}
-
-int ler (Suave servo){ // USADO PARA TESTE
-  return 10; 
+int ler (Suave servo){
+  return servo.read();
 }
+
+// int ler (Suave servo){ // USADO PARA TESTE
+//   return 10;
+// }
 
 char aguardarValorChar()
 {
@@ -55,7 +55,7 @@ char aguardarValorChar()
 void loop() {
 
     porta = aguardarValorInt(); // Lê byte do buffer serial;
-    
+
     switch (porta) {
 
     case 2://garra
@@ -66,7 +66,7 @@ void loop() {
 
         if( graus + ler(garra) < 0 || graus + ler(garra) > 180)
           break;
-        
+
         garra.mover(graus + ler(garra),10);
 
     break;
@@ -93,7 +93,7 @@ void loop() {
         cotovelo.mover(graus + ler(cotovelo),3);
 
      break;
-      
+
     case 8://ombroI e ombroII
         extra = 0;
         sentido = aguardarValorChar();
@@ -103,16 +103,16 @@ void loop() {
 
         if( graus + ler(ombroI) < 1 || graus + ler(ombroI) > 180)
           break;
-          
+
         if( graus < 0){
               for( int i = 0; i > graus; i--){
                   pos--;
                   ombroI.mover(pos,1);
                   ombroII.mover(180 -pos,1);
         }
-          
+
         }
-        else{   
+        else{
               for( int i = 0; i < graus; i++){
                   pos++;
                   ombroI.mover(pos,1);
@@ -121,7 +121,7 @@ void loop() {
         }
     break;
 
-    case 12: //BASE 
+    case 12: //BASE
         sentido = aguardarValorChar();
         graus = aguardarValorInt();
          if (sentido == '-') graus = graus * (-1);
@@ -143,11 +143,11 @@ void loop() {
 	sentido = aguardarValorChar();
         a = aguardarValorInt();
         delay(a * 1000);
-        
+
     break;
-    
+
     case 19:  //resetar
-    
+
           cotovelo.mover(70,3);
           delay(500);
           ombroI.mover(90,3);
@@ -159,11 +159,11 @@ void loop() {
           delay(500);
           cotovelo.mover(15,3);
           delay(500);
-    
-         
-              
+
+
+
     break;
-    
+
   }
 
     delay(500);
@@ -171,5 +171,5 @@ void loop() {
     Serial.flush();
 }
 
-    
+
 
