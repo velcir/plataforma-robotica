@@ -37,13 +37,13 @@ long aguardarValorInt()
     return Serial.parseInt();
 }
 
-int ler (Suave servo){
-  return servo.read();
-  
-}
-//int ler (Suave servo){ // USADO PARA TESTE
-  //return 10; 
+//int ler (Suave servo){
+//  return servo.read(); 
 //}
+
+int ler (Suave servo){ // USADO PARA TESTE
+  return 10; 
+}
 
 char aguardarValorChar()
 {

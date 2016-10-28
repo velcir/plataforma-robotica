@@ -1,5 +1,5 @@
-// import * as SerialPort from 'serialport';
-import {FakeSerialPort as SerialPort} from './fake-serialport';
+ import * as SerialPort from 'serialport';
+//import {FakeSerialPort as SerialPort} from './fake-serialport';
 import {instrucoes} from '../../../compartilhado/config';
 
 let serialPort;
