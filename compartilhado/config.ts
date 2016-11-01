@@ -46,4 +46,5 @@ export const instrucoes = {
   girar_punho_tras: [4, '-'],
   abrir_garra: [2, '+'],
   fechar_garra: [2, '-'],
+  fim: [19]
 };

@@ -19,6 +19,9 @@ export async function executarPrograma(programa) {
     await escreverNaSerial(instrucoesArduino);
     await lerRetornoSerial();
   }
+
+  await escreverNaSerial(instrucoes.fim);
+  await lerRetornoSerial();
 }
 
 function escreverNaSerial(instrucoes) {
