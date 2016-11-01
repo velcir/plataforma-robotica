@@ -1,12 +1,12 @@
 import * as firebaseService from './modulos/firebase-service';
 import * as s3 from './modulos/s3';
-import * as camera  from './modulos/camera';
+import * as camera from './modulos/camera';
 import * as braco from './modulos/braco';
 
 const config = require('./../config.json');
 
-import {Status} from '../../compartilhado/config';
-import {validarPrograma} from '../../compartilhado/validador';
+import { Status } from '../../compartilhado/config';
+import { validarPrograma } from '../../compartilhado/validador';
 
 firebaseService.inicializar(config.firebase);
 s3.inicializar(config.s3);
@@ -56,10 +56,15 @@ async function iniciarValidador() {
 
     console.log('Validando: ', snapshot.val());
 
-    const validado = validarPrograma(snapshot.val().programa);
 
-    await firebaseService.atualizarPrograma(snapshot, {
-      status: validado ? Status.Validado : Status.Rejeitado
-    });
+    try {
+      validarPrograma(snapshot.val().programa);
+      await firebaseService.atualizarPrograma(snapshot, { status: Status.Validado });
+    } catch (e) {
+      await firebaseService.atualizarPrograma(snapshot, {
+        status: Status.Rejeitado,
+        motivo: (<Error>e).message
+      });
+    }
   }
 }

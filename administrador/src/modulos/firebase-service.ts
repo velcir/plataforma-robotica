@@ -8,6 +8,7 @@ interface IFirebaseConfig {
 
 interface IDados {
   status?: number;
+  motivo?: string;
   video?: string;
 }
 
