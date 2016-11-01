@@ -35,7 +35,7 @@ export function validarPrograma(programa: [[string, number]]) {
     }
 
     if (posicoes[servo] < LIMITES[servo][0] || posicoes[servo] > LIMITES[servo][1]) {
-      throw new Error(
+      throw (
         `A instrução nº ${index + 1} ${blocos[instrucao][2]} com valor ` +
         `${valor} ultrapassou os limites permitidos!`
       );

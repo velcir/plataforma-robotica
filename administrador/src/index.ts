@@ -63,7 +63,7 @@ async function iniciarValidador() {
     } catch (e) {
       await firebaseService.atualizarPrograma(snapshot, {
         status: Status.Rejeitado,
-        motivo: (<Error>e).message
+        motivo: e
       });
     }
   }
