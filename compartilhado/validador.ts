@@ -3,14 +3,14 @@ import { Servos, instrucoes, blocos } from './config';
 const POSICAO_BASE = 97;
 const POSICAO_PUNHO = 70;
 const POSICAO_COTOVELO = 15;
-const POSICAO_OMBRO = 97;
+const POSICAO_OMBRO = 90;
 const POSICAO_GARRA = 50;
 
 const LIMITES = {
   [Servos.Base]: [25, 160],
   [Servos.Punho]: [40, 120],
   [Servos.Cotovelo]: [15, 90],
-  [Servos.Ombro]: [20, 120],
+  [Servos.Ombro]: [20, 130],
   [Servos.Garra]: [50, 70]
 };
 
