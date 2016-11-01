@@ -31,7 +31,7 @@ export function validarPrograma(programa: [[string, number]]) {
     if (sinal === '+') {
       posicoes[servo] += valor;
     } else {
-      posicoes[servo] += valor;
+      posicoes[servo] -= valor;
     }
 
     if (posicoes[servo] < LIMITES[servo][0] || posicoes[servo] > LIMITES[servo][1]) {
@@ -43,11 +43,11 @@ export function validarPrograma(programa: [[string, number]]) {
 
     /* Laterais */
     if (
-      posicoes[Servos.Base] < 65 &&
-      (posicoes[Servos.Punho] <= 90 || posicoes[Servos.Cotovelo] <= 25)
+      posicoes[Servos.Base] < 55 &&
+      (posicoes[Servos.Punho] >= 90 && posicoes[Servos.Cotovelo] <= 25)
     ) {
       throw (
-        `A instrução nº ${index + 1} ${blocos[instrucao][2]} com valor ` +
+        `AQUIII 1  A instrução nº ${index + 1} ${blocos[instrucao][2]} com valor ` +
         `${valor} ultrapassou os limites permitidos, braço pode colidir na ` +
         `cesta, levante um pouco o cotovelo ou o punho!`
       );
@@ -68,7 +68,7 @@ export function validarPrograma(programa: [[string, number]]) {
     /* Solo */
     if (
       posicoes[Servos.Ombro] > 120 &&
-      (posicoes[Servos.Cotovelo] < 25 || posicoes[Servos.Cotovelo] < 110)
+      (posicoes[Servos.Cotovelo] < 25 && posicoes[Servos.Cotovelo] < 110)
     ) {
       throw (
         `A instrução nº ${index + 1} ${blocos[instrucao][2]} com valor ` +
@@ -79,11 +79,11 @@ export function validarPrograma(programa: [[string, number]]) {
 
     /* Cesta */
     if (
-      (posicoes[Servos.Base] < 65 && posicoes[Servos.Base] > 30) &&
-      (posicoes[Servos.Ombro] < 90 || posicoes[Servos.Cotovelo] < 25)
+      (posicoes[Servos.Base] < 55 && posicoes[Servos.Base] > 30) &&
+      (posicoes[Servos.Ombro] > 90 && posicoes[Servos.Cotovelo] < 25)
     ) {
       throw (
-        `A instrução nº ${index + 1} ${blocos[instrucao][2]} com valor ` +
+        `AQUIII 2 A instrução nº ${index + 1} ${blocos[instrucao][2]} com valor ` +
         `${valor} ultrapassou os limites permitidos, braço pode colidir com a ` +
         `cesta, levante um pouco o Ombro ou o Cotovelo!`
       );
