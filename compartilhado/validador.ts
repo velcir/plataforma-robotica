@@ -40,5 +40,53 @@ export function validarPrograma(programa: [[string, number]]) {
         `${valor} ultrapassou os limites permitidos!`
       );
     }
+
+    /* Laterais */
+    if (
+      posicoes[Servos.Base] < 65 &&
+      (posicoes[Servos.Punho] <= 90 || posicoes[Servos.Cotovelo] <= 25)
+    ) {
+      throw (
+        `A instrução nº ${index + 1} ${blocos[instrucao][2]} com valor ` +
+        `${valor} ultrapassou os limites permitidos, braço pode colidir na ` +
+        `cesta, levante um pouco o cotovelo ou o punho!`
+      );
+    }
+
+    /* Argola */
+    if (
+      (posicoes[Servos.Base] > 110 && posicoes[Servos.Base] < 140) &&
+      posicoes[Servos.Ombro] <= 90
+    ) {
+      throw (
+        `A instrução nº ${index + 1} ${blocos[instrucao][2]} com valor ` +
+        `${valor} ultrapassou os limites permitidos, braço pode colidir na ` +
+        `argola, levante um pouco o cotovelo ou o punho!`
+      );
+    }
+
+    /* Solo */
+    if (
+      posicoes[Servos.Ombro] > 120 &&
+      (posicoes[Servos.Cotovelo] < 25 || posicoes[Servos.Cotovelo] < 110)
+    ) {
+      throw (
+        `A instrução nº ${index + 1} ${blocos[instrucao][2]} com valor ` +
+        `${valor} ultrapassou os limites permitidos, braço pode colidir com o ` +
+        `cotovelo, levante um pouco o Ombro e o Cotovelo ou o Punho!`
+      );
+    }
+
+    /* Cesta */
+    if (
+      (posicoes[Servos.Base] < 65 && posicoes[Servos.Base] > 30) &&
+      (posicoes[Servos.Ombro] < 90 || posicoes[Servos.Cotovelo] < 25)
+    ) {
+      throw (
+        `A instrução nº ${index + 1} ${blocos[instrucao][2]} com valor ` +
+        `${valor} ultrapassou os limites permitidos, braço pode colidir com a ` +
+        `cesta, levante um pouco o Ombro ou o Cotovelo!`
+      );
+    }
   }
 }
