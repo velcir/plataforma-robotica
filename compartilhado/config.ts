@@ -44,7 +44,6 @@ export enum Servos {
 }
 
 export const instrucoes = {
-<<<<<<< HEAD
   girar_base_esquerda: [12, '+'],
   girar_base_direita: [12, '-'],
   girar_ombro_frente: [8, '+'],
@@ -55,17 +54,5 @@ export const instrucoes = {
   girar_punho_tras: [4, '+'],
   abrir_garra: [2, '+'],
   fechar_garra: [2, '-'],
-=======
-  girar_base_esquerda: [Servos.Base, '+'],
-  girar_base_direita: [Servos.Base, '-'],
-  girar_ombro_frente: [Servos.Ombro, '+'],
-  girar_ombro_tras: [Servos.Ombro, '-'],
-  girar_cotovelo_cima: [Servos.Cotovelo, '+'],
-  girar_cotovelo_baixo: [Servos.Cotovelo, '-'],
-  girar_punho_frente: [Servos.Punho, '+'],
-  girar_punho_tras: [Servos.Punho, '-'],
-  abrir_garra: [Servos.Garra, '+'],
-  fechar_garra: [Servos.Garra, '-'],
->>>>>>> 9a5f5ae43d0120ebf4a8f6711067604b99b257b3
   fim: [19]
 };
