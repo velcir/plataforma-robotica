@@ -153,15 +153,14 @@ void loop() {
           ombroI.mover(90,3);
           ombroII.mover(180-90,3);
           delay(500);
-          base.mover(90,3);
+          base.mover(97,3);
           pulso.mover(20,3);
-          garra.mover(40,3);
+          garra.mover(50,3);
           delay(500);
           cotovelo.mover(15,3);
           delay(500);
-
-
-
+          pulso.mover(70,3);
+          
     break;
 
   }
