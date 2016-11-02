@@ -1,10 +1,14 @@
 <md-content>
   <md-card class="center">
     <h3>Arena</h3>
-    <img ng-click="$ctrl.abrirDialog($event, 'arena')" src="../../../img/arena.png" alt="Arena">
+    <img ng-click="$ctrl.abrirDialog($event, 'Arena')" src="../../../img/arena.png" alt="Arena">
   </md-card>
   <md-card class="center">
     <h3>Instruções</h3>
-    <img ng-click="$ctrl.abrirDialog($event, 'instrucoes')" src="../../../img/instrucoes.png" alt="Instruções">
+    <img ng-click="$ctrl.abrirDialog($event, 'Instruções')" src="../../../img/instrucoes.png" alt="Instruções">
   </md-card>
+  <section layout="row" layout-align="center center" layout-wrap>
+    <md-button class="md-raised md-warn" ng-click="$ctrl.abrirDialog($event, 'Desafios')">Desafios</md-button>
+    <md-button class="md-raised md-primary" ng-click="$ctrl.abrirDialog($event, 'Questionário')">Questionário</md-button>
+  </section>
 </md-content>

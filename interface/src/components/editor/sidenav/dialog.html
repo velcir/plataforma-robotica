@@ -1,14 +1,37 @@
 <md-dialog aria-label="Imagens">
   <form ng-cloak>
-    <md-dialog-content ng-switch="$ctrl.image">
-      <img ng-switch-when="arena"
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>{{ $ctrl.title }}</h2>
+      </div>
+    </md-toolbar>
+    <md-dialog-content ng-switch="$ctrl.title">
+      <img ng-switch-when="Arena"
            style="max-width: 100%; max-height: 400px"
            src="../../../img/arena.png"
            alt="Arena"/>
-      <img ng-switch-when="instrucoes"
+      <img ng-switch-when="Instruções"
            style="max-width: 100%; max-height: 400px"
            src="../../../img/instrucoes.png"
            alt="Instruções"/>
+      <div ng-switch-when="Desafios" style="padding: 5px 20px">
+        <p>
+          A arena possui 40x50 cm de dimensão e em um formato conhecido por duas águas com 4 caimentos. Esse formato
+          permite, graças às elevações laterais, que a bola ao final de cada execução permaneça sempre no seu ponto
+          de origem - centro da arena. Dessa forma, a arena, sem nenhum auxílio humano, estará sempre disponível ao
+          próximo usuário que vir a utilizar a ferramenta.
+        </p>
+        <p>
+          Dois desafios estão presentes nessa arena. O desafio do basquete e o desafio da argola. No primeiro, o
+          usuário deve desenvolver um código para que o braço robótico movimente-se do seu ponto inicial e vá até o
+          encontro da bola, posicionada no centro da arena, e leve a mesma até uma cesta de basquete, que possui 18 cm
+          de altura, 6,5cm de diâmetro, também modelada e impressa na impressora 3D e que encontra-se ao lado direito
+          do robô no cenário. Semelhante ao desafio do basquete, no desafio da argola o usuário deve novamente,
+          prescrever no ambiente web uma sequência de códigos para que o braço recolha a bola do seu ponto inicial.
+          Porém, neste ao invés de acertar a cesta, o usuário para completar o desafio, deve fazer com que a bola
+          recolhida pelo robô passe por dentro de um argola, de 7,5cm de diâmetro, posicionada no seu lado esquerdo.
+        </p>
+      </div>
     </md-dialog-content>
     <md-dialog-actions layout="row">
       <span flex></span>

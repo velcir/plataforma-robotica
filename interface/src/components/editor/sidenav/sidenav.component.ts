@@ -11,12 +11,12 @@ function SidenavController($mdDialog) {
 
   $ctrl.abrirDialog = abrirDialog;
 
-  function abrirDialog($event, image) {
+  function abrirDialog($event, title) {
     $mdDialog.show({
       template: require('./dialog.html'),
       controller: function () {
         this.fechar = () => $mdDialog.hide();
-        this.image = image;
+        this.title = title;
       },
       targetEvent: $event,
       controllerAs: '$ctrl',
