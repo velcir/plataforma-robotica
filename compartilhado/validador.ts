@@ -10,7 +10,7 @@ const LIMITES = {
   [Servos.Base]: [25, 160],
   [Servos.Punho]: [40, 120],
   [Servos.Cotovelo]: [15, 90],
-  [Servos.Ombro]: [20, 130],
+  [Servos.Ombro]: [20, 140],
   [Servos.Garra]: [50, 70]
 };
 
@@ -44,10 +44,10 @@ export function validarPrograma(programa: [[string, number]]) {
     /* Laterais */
     if (
       posicoes[Servos.Base] < 55 &&
-      (posicoes[Servos.Punho] >= 90 && posicoes[Servos.Cotovelo] <= 25)
+      (posicoes[Servos.Punho] <= 90 && posicoes[Servos.Cotovelo] <= 25)
     ) {
       throw (
-        `AQUIII 1  A instrução nº ${index + 1} ${blocos[instrucao][2]} com valor ` +
+        `A instrução nº ${index + 1} ${blocos[instrucao][2]} com valor ` +
         `${valor} ultrapassou os limites permitidos, braço pode colidir na ` +
         `cesta, levante um pouco o cotovelo ou o punho!`
       );
@@ -68,7 +68,7 @@ export function validarPrograma(programa: [[string, number]]) {
     /* Solo */
     if (
       posicoes[Servos.Ombro] > 120 &&
-      (posicoes[Servos.Cotovelo] < 25 && posicoes[Servos.Cotovelo] < 110)
+      (posicoes[Servos.Cotovelo] < 25 || posicoes[Servos.Punho] < 110)
     ) {
       throw (
         `A instrução nº ${index + 1} ${blocos[instrucao][2]} com valor ` +
@@ -83,7 +83,7 @@ export function validarPrograma(programa: [[string, number]]) {
       (posicoes[Servos.Ombro] > 90 && posicoes[Servos.Cotovelo] < 25)
     ) {
       throw (
-        `AQUIII 2 A instrução nº ${index + 1} ${blocos[instrucao][2]} com valor ` +
+        `A instrução nº ${index + 1} ${blocos[instrucao][2]} com valor ` +
         `${valor} ultrapassou os limites permitidos, braço pode colidir com a ` +
         `cesta, levante um pouco o Ombro ou o Cotovelo!`
       );

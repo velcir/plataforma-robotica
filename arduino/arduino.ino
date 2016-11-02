@@ -149,7 +149,7 @@ void loop() {
 
     case 19:  //resetar
 
-          cotovelo.mover(70,3);
+          cotovelo.mover(50,3);
           delay(500);
           ombroI.mover(90,3);
           ombroII.mover(180-90,3);
