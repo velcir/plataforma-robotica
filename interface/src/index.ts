@@ -2,6 +2,9 @@
 
 import * as angular from 'angular';
 
+import * as firebase from 'firebase';
+(<any>window).firebase = firebase;
+
 import 'angular-material';
 import 'angularfire';
 import 'angular-ui-router';
