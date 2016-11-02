@@ -5,8 +5,8 @@ import * as braco from './modulos/braco';
 
 const config = require('./../config.json');
 
-import { Status } from '../../compartilhado/config';
-import { validarPrograma } from '../../compartilhado/validador';
+import { Status } from '../../interface/src/compartilhado/config';
+import { validarPrograma } from '../../interface/src/compartilhado/validador';
 
 firebaseService.inicializar(config.firebase);
 s3.inicializar(config.s3);

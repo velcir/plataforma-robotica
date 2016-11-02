@@ -1,6 +1,6 @@
 import { Editor } from '../../common/services/editor.service';
 import * as angular from 'angular';
-import {statusDescription, blocos} from '../../../../compartilhado/config';
+import {statusDescription, blocos} from '../../compartilhado/config';
 import * as moment from 'moment';
 
 export const historico: angular.IComponentOptions = {

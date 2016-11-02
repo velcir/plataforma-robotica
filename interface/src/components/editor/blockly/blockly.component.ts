@@ -1,5 +1,5 @@
 import {Editor} from '../../../common/services/editor.service';
-import {blocos} from '../../../../../compartilhado/config';
+import {blocos} from '../../../compartilhado/config';
 
 export const blockly: angular.IComponentOptions = {
   template: require('./blockly.component.html'),

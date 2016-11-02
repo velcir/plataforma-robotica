@@ -1,6 +1,7 @@
 import { Usuario } from './usuario.service';
 import { Firebase } from './firebase.service';
-import { Status } from '../../../../compartilhado/config';
+import { Status } from '../../compartilhado/config';
+import { validarPrograma } from '../../compartilhado/validador';
 
 export class Editor {
   static $inject = ['Usuario', 'Firebase'];
@@ -11,15 +12,17 @@ export class Editor {
   }
 
   public submeterPrograma() {
-    const programa = {
+    const dados = {
       usuario: this.usuario.id,
       programa: this.blocklyParser(),
       status: Status.Enviado
     };
 
-    return this.firebase.createRef('programas').push(programa)
+    validarPrograma(dados.programa);
+
+    return this.firebase.createRef('programas').push(dados)
       .then((data: any) =>
-        this.firebase.createRef(`historico/${this.usuario.id}/${data.key}`).set(programa)
+        this.firebase.createRef(`historico/${this.usuario.id}/${data.key}`).set(dados)
       );
   }
 

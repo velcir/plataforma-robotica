@@ -1,5 +1,5 @@
 import * as angular from 'angular';
-import {blocos} from '../../../compartilhado/config';
+import {blocos} from '../compartilhado/config';
 
 export function blocklyConfig() {
   angular.forEach(blocos, (config, key) => {
