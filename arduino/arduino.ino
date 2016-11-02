@@ -128,6 +128,7 @@ void loop() {
          if( graus + ler(base) < 25 || graus + ler(base) > 160)
           break;
 
+
         base.mover(graus + ler(base),3);
 
      break;
@@ -148,7 +149,7 @@ void loop() {
 
     case 19:  //resetar
 
-          cotovelo.mover(70,3);
+          cotovelo.mover(50,3);
           delay(500);
           ombroI.mover(90,3);
           ombroII.mover(180-90,3);
@@ -160,6 +161,7 @@ void loop() {
           cotovelo.mover(15,3);
           delay(500);
           pulso.mover(70,3);
+          garra.mover(50,2);
           
     break;
 

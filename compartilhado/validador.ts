@@ -10,7 +10,7 @@ const LIMITES = {
   [Servos.Base]: [25, 160],
   [Servos.Punho]: [40, 120],
   [Servos.Cotovelo]: [15, 90],
-  [Servos.Ombro]: [20, 120],
+  [Servos.Ombro]: [20, 140],
   [Servos.Garra]: [50, 70]
 };
 
@@ -31,7 +31,7 @@ export function validarPrograma(programa: [[string, number]]) {
     if (sinal === '+') {
       posicoes[servo] += valor;
     } else {
-      posicoes[servo] += valor;
+      posicoes[servo] -= valor;
     }
 
     if (posicoes[servo] < LIMITES[servo][0] || posicoes[servo] > LIMITES[servo][1]) {
@@ -43,8 +43,8 @@ export function validarPrograma(programa: [[string, number]]) {
 
     /* Laterais */
     if (
-      posicoes[Servos.Base] < 65 &&
-      (posicoes[Servos.Punho] <= 90 || posicoes[Servos.Cotovelo] <= 25)
+      posicoes[Servos.Base] < 55 &&
+      (posicoes[Servos.Punho] <= 90 && posicoes[Servos.Cotovelo] <= 25)
     ) {
       throw (
         `A instrução nº ${index + 1} ${blocos[instrucao][2]} com valor ` +
@@ -68,7 +68,7 @@ export function validarPrograma(programa: [[string, number]]) {
     /* Solo */
     if (
       posicoes[Servos.Ombro] > 120 &&
-      (posicoes[Servos.Cotovelo] < 25 || posicoes[Servos.Cotovelo] < 110)
+      (posicoes[Servos.Cotovelo] < 25 || posicoes[Servos.Punho] < 110)
     ) {
       throw (
         `A instrução nº ${index + 1} ${blocos[instrucao][2]} com valor ` +
@@ -79,8 +79,8 @@ export function validarPrograma(programa: [[string, number]]) {
 
     /* Cesta */
     if (
-      (posicoes[Servos.Base] < 65 && posicoes[Servos.Base] > 30) &&
-      (posicoes[Servos.Ombro] < 90 || posicoes[Servos.Cotovelo] < 25)
+      (posicoes[Servos.Base] < 55 && posicoes[Servos.Base] > 30) &&
+      (posicoes[Servos.Ombro] > 90 && posicoes[Servos.Cotovelo] < 25)
     ) {
       throw (
         `A instrução nº ${index + 1} ${blocos[instrucao][2]} com valor ` +
