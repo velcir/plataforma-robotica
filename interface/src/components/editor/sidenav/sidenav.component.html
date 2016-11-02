@@ -1,11 +1,10 @@
 <md-content>
-    <md-card>
-        <h1 class="center">Próxima Execução</h1>
-        <p><b>Previsão início:</b> 3 min</p>
-    </md-card>
-    <md-card>
-        <h1 class="center">Última Execução</h1>
-        <!--<video style="width: 100%" controls ng-src="{{ $ctrl.video }}"></video>-->
-        <p><b>Terminou fazem:</b> 15 min</p>
-    </md-card>
+  <md-card class="center">
+    <h3>Arena</h3>
+    <img ng-click="$ctrl.abrirDialog($event, 'arena')" src="../../../img/arena.png" alt="Arena">
+  </md-card>
+  <md-card class="center">
+    <h3>Instruções</h3>
+    <img ng-click="$ctrl.abrirDialog($event, 'instrucoes')" src="../../../img/instrucoes.png" alt="Instruções">
+  </md-card>
 </md-content>

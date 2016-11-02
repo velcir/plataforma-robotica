@@ -1,0 +1,20 @@
+<md-dialog aria-label="Imagens">
+  <form ng-cloak>
+    <md-dialog-content ng-switch="$ctrl.image">
+      <img ng-switch-when="arena"
+           style="max-width: 100%; max-height: 400px"
+           src="../../../img/arena.png"
+           alt="Arena"/>
+      <img ng-switch-when="instrucoes"
+           style="max-width: 100%; max-height: 400px"
+           src="../../../img/instrucoes.png"
+           alt="Instruções"/>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <span flex></span>
+      <md-button ng-click="$ctrl.fechar()">
+        Fechar
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>
