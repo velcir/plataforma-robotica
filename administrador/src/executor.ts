@@ -5,19 +5,13 @@ import * as braco from './modulos/braco';
 
 const config = require('./../config.json');
 
-import { Status } from '../../interface/src/compartilhado/config';
-import { validarPrograma } from '../../interface/src/compartilhado/validador';
+import {Status} from '../../interface/src/compartilhado/config';
 
 firebaseService.inicializar(config.firebase);
 s3.inicializar(config.s3);
 braco.inicializar(config.serial);
 
-Promise
-  .all([
-    iniciarExecutor(),
-    iniciarValidador()
-  ])
-  .catch(err => console.error(err));
+iniciarExecutor().catch(err => console.error(err));
 
 async function iniciarExecutor() {
   while (true) {
@@ -25,7 +19,7 @@ async function iniciarExecutor() {
 
     console.log('Iniciando: ', snapshot.key);
 
-    await firebaseService.atualizarPrograma(snapshot, { status: Status.Executando });
+    await firebaseService.atualizarPrograma(snapshot, {status: Status.Executando});
 
     let nmArquivo = `videos/${snapshot.key}.ogv`;
 
@@ -47,24 +41,5 @@ async function iniciarExecutor() {
     });
 
     console.log('Finalizando: ', snapshot.key);
-  }
-}
-
-async function iniciarValidador() {
-  while (true) {
-    const snapshot = await firebaseService.obterProximoPrograma(Status.Enviado);
-
-    console.log('Validando: ', snapshot.val());
-
-
-    try {
-      validarPrograma(snapshot.val().programa);
-      await firebaseService.atualizarPrograma(snapshot, { status: Status.Validado });
-    } catch (e) {
-      await firebaseService.atualizarPrograma(snapshot, {
-        status: Status.Rejeitado,
-        motivo: e
-      });
-    }
   }
 }

@@ -1,16 +1,17 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "es6",
-        "noImplicitAny": false,
-        "removeComments": false,
-        "preserveConstEnums": true,
-        "sourceMap": true,
-        "outDir": "dist"
-    },
-    "files": [
-        "src/index.ts",
-        "src/typings.d.ts",
-        "node_modules/firebase/firebase.d.ts"
-    ]
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "noImplicitAny": false,
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "outDir": "dist"
+  },
+  "files": [
+    "src/executor.ts",
+    "src/validador.ts",
+    "src/typings.d.ts",
+    "node_modules/firebase/firebase.d.ts"
+  ]
 }
