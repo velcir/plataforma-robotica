@@ -26,15 +26,18 @@ async function iniciarExecutor() {
     let ffmpeg = camera.iniciarGravacao(nmArquivo);
 
     await camera.delay(1000);
+    console.log('finalizou execucao');
 
     await braco.executarPrograma(snapshot.val().programa);
 
     await camera.delay(1000);
 
     camera.finalizarGravacao(ffmpeg);
+    console.log('finalizou gravacao');
 
     let dsUrlS3 = await s3.enviarVideo(nmArquivo);
-
+    console.log('enviou video');
+    
     await firebaseService.atualizarPrograma(snapshot, {
       status: Status.Finalizado,
       video: dsUrlS3
