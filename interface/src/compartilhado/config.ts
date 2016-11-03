@@ -44,8 +44,8 @@ export enum Servos {
 }
 
 export const instrucoes = {
-  girar_base_esquerda: [12, '+'],
-  girar_base_direita: [12, '-'],
+  girar_base_esquerda: [12, '-'],
+  girar_base_direita: [12, '+'],
   girar_ombro_frente: [8, '+'],
   girar_ombro_tras: [8, '-'],
   girar_cotovelo_cima: [6, '-'],
