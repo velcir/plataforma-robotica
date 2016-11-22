@@ -1,4 +1,3 @@
-//FLAG GIT PUSH
 import { Servos, instrucoes, blocos } from './config';
 
 const POSICAO_BASE = 97;

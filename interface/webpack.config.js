@@ -36,7 +36,7 @@ module.exports = {
       {test: /\.css/, loader: defineObj.ON_PRODUCTION ? 'style!css?minimize' : 'style!css'},
       {test: /\.scss/, loader: defineObj.ON_PRODUCTION ? 'style!css?minimize!sass' : 'style!css!sass'},
       {test: /\.html/, loader: 'html'},
-      {test: /\.png/, loader: 'file?name=img/[name].[ext]'},
+      {test: /\.(png|gif)/, loader: 'file?name=img/[name].[ext]'},
       {test: /\.(ttf|eot|svg|woff)/, loader: 'file?name=fonts/[name].[ext]'}
     ]
   },

@@ -10,26 +10,44 @@
            style="max-width: 100%; max-height: 400px"
            src="../../../img/arena.png"
            alt="Arena"/>
-      <img ng-switch-when="Instruções"
-           style="max-width: 100%; max-height: 400px"
-           src="../../../img/instrucoes.png"
-           alt="Instruções"/>
+      <div ng-switch-when="Instruções" layout="column" layout-align="center center">
+        <img style="max-width: 100%; max-height: 400px"
+             src="../../../img/instrucoes.png"
+             alt="Instruções"/>
+        <h3>Girar base p/ esquerda</h3>
+        <img src="../../../img/gifs/base_esquerda.gif"/>
+        <h3>Girar base p/ direita</h3>
+        <img src="../../../img/gifs/base_direita.gif"/>
+        <h3>Girar ombro p/ frente</h3>
+        <img src="../../../img/gifs/ombro_frente.gif"/>
+        <h3>Girar ombro p/ trás</h3>
+        <img src="../../../img/gifs/ombro_tras.gif"/>
+        <h3>Girar cotovelo p/ frente</h3>
+        <img src="../../../img/gifs/cotovelo_cima.gif"/>
+        <h3>Girar cotovelo p/ trás</h3>
+        <img src="../../../img/gifs/cotovelo_baixo.gif"/>
+        <h3>Girar punho p/ frente</h3>
+        <img src="../../../img/gifs/pulso_frente.gif"/>
+        <h3>Girar punho p/ trás</h3>
+        <img src="../../../img/gifs/pulso_tras.gif"/>
+        <h3>Abrir a garra</h3>
+        <img src="../../../img/gifs/garra_abrir.gif"/>
+        <h3>Fechar a garra</h3>
+        <img src="../../../img/gifs/garra_fechar.gif"/>
+      </div>
       <div ng-switch-when="Desafios" style="padding: 5px 20px">
         <p>
-          A arena possui 40x50 cm de dimensão e em um formato conhecido por duas águas com 4 caimentos. Esse formato
-          permite, graças às elevações laterais, que a bola ao final de cada execução permaneça sempre no seu ponto
-          de origem - centro da arena. Dessa forma, a arena, sem nenhum auxílio humano, estará sempre disponível ao
-          próximo usuário que vir a utilizar a ferramenta.
+          1-Desafio da Cesta de Baskete: desenvolver um código para que o braço robótico movimente-se do seu ponto
+          inicial e vá até o encontro da bola, posicionada no centro da arena e leve a mesma até uma cesta de basquete,
+          que encontra-se ao lado direito do robô no cenário.
         </p>
         <p>
-          Dois desafios estão presentes nessa arena. O desafio do basquete e o desafio da argola. No primeiro, o
-          usuário deve desenvolver um código para que o braço robótico movimente-se do seu ponto inicial e vá até o
-          encontro da bola, posicionada no centro da arena, e leve a mesma até uma cesta de basquete, que possui 18 cm
-          de altura, 6,5cm de diâmetro, também modelada e impressa na impressora 3D e que encontra-se ao lado direito
-          do robô no cenário. Semelhante ao desafio do basquete, no desafio da argola o usuário deve novamente,
-          prescrever no ambiente web uma sequência de códigos para que o braço recolha a bola do seu ponto inicial.
-          Porém, neste ao invés de acertar a cesta, o usuário para completar o desafio, deve fazer com que a bola
-          recolhida pelo robô passe por dentro de um argola, de 7,5cm de diâmetro, posicionada no seu lado esquerdo.
+          2-Desafio da Argola: desenvolver uma sequência de códigos para que o braço recolha a bola do seu ponto
+          inicial e passe a mesma por dentro de um argola no sentido "fora para dentro", ou seja que a bola passe
+          por entre a argola e vá ate o seu ponto de origem. A argola está situada ao lado esquerdo do robô.
+        </p>
+        <p>
+          3- desenvolver uma sequencia de códigos que realise os dois desafios anteriores em uma só programação.
         </p>
       </div>
       <div ng-switch-when="Questionário">
