@@ -5,7 +5,7 @@
   - Envia as instruções para o braço robótico
   - Finaliza a gravação do video
   - Envia o video para o Amazon S3
-  - Atualiza o statudo do video para Finalizado e associa o link para o Video a este programa.
+  - Atualiza o status do programa para Finalizado e associa o link para o video armazendado no S3.
 */
 
 import * as firebaseService from './modulos/firebase-service';
