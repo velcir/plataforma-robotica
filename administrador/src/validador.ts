@@ -1,3 +1,10 @@
+/*
+  Script executa as seguintes operações:
+  - Aguarda a chegada de um novo programa
+  - Valida as instruções do programa
+  - Atualiza o status do Programa para Inválido ou Válido para execução
+*/
+
 import * as firebaseService from './modulos/firebase-service';
 
 const config = require('./../config.json');
