@@ -1,6 +1,6 @@
 #include <Servo.h>
 #include <Arduino.h>
-#include <math.h>
+#include <math.h> 
 
 class Suave{
 private:
@@ -108,4 +108,3 @@ public:
     s.detach();  
   }
 };
-
